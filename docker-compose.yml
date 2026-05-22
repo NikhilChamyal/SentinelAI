@@ -1,0 +1,15 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+    container_name: sentinelai-backend
+    ports:
+      - "8000:8000"
+
+  ai-engine:
+    build:
+      context: ./ai-engine
+    container_name: sentinelai-ai
+    ports:
+      - "8001:8001"
