@@ -23,3 +23,10 @@ services:
 
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    container_name: sentinelai-grafana
+
+    ports:
+      - "3000:3000"
