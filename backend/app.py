@@ -21,7 +21,7 @@ def home():
 
     return {
         "project": "SentinelAI",
-        "status": "running",
+        "status": "running-v2",
         "time": str(datetime.now())
     }
 
