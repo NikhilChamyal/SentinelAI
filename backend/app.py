@@ -53,7 +53,7 @@ def incident_analysis():
 
     REQUEST_COUNT.inc()
 
-    response = requests.get("http://ai-engine:8001/analyze")
+    response = requests.get("http://ai-service:8001/analyze")
 
     ai_result = response.json()
 
