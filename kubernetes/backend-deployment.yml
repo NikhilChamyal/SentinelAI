@@ -20,7 +20,7 @@ spec:
         containers:
         - name: backend
 
-          image: sentinelai-backend:latest
+          image: image:nikhil602/sentinelai-backend:latest
 
           imagePullPolicy: Never
 
