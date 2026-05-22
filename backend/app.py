@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from datetime import datetime
 import platform
+import requests
 
 app = FastAPI()
 
@@ -10,7 +11,6 @@ def home():
     return {
         "project": "SentinelAI",
         "status": "running",
-        "message": "AI Incident Management Platform",
         "time": str(datetime.now())
     }
 
@@ -26,7 +26,19 @@ def health_check():
 def system_info():
     return {
         "system": platform.system(),
-        "node": platform.node(),
         "release": platform.release(),
         "processor": platform.processor()
+    }
+
+
+@app.get("/incident-analysis")
+def incident_analysis():
+
+    response = requests.get("http://ai-engine:8001/analyze")
+
+    ai_result = response.json()
+
+    return {
+        "source": "AI Engine",
+        "analysis": ai_result
     }
