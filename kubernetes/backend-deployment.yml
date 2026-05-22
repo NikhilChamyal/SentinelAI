@@ -7,6 +7,13 @@ metadata:
 spec:
   replicas: 2
 
+  strategy:
+    type: RollingUpdate
+
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
   selector:
     matchLabels:
       app: backend
@@ -17,12 +24,12 @@ spec:
         app: backend
 
     spec:
-        containers:
+      containers:
         - name: backend
 
-          image: image:nikhil602/sentinelai-backend:latest
+          image: nikhil602/sentinelai-backend:latest
 
-          imagePullPolicy: Never
+          imagePullPolicy: Always
 
           ports:
             - containerPort: 8000
