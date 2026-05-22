@@ -7,6 +7,13 @@ metadata:
 spec:
   replicas: 2
 
+  strategy:
+    type: RollingUpdate
+
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+
   selector:
     matchLabels:
       app: ai-engine
@@ -20,9 +27,18 @@ spec:
       containers:
         - name: ai-engine
 
-          image: sentinelai-ai-engine:latest
+          image: nikhil602/sentinelai-ai-engine:latest
 
-          imagePullPolicy: Never
+          imagePullPolicy: Always
 
           ports:
             - containerPort: 8001
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+
+            limits:
+              cpu: "200m"
+              memory: "256Mi"

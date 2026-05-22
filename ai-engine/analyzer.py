@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from datetime import datetime
+from log_analyzer import analyze_logs
 
 app = FastAPI()
 
@@ -7,16 +7,18 @@ app = FastAPI()
 @app.get("/")
 def home():
     return {
-        "service": "AI Engine",
-        "status": "running",
-        "time": str(datetime.now())
+        "service": "AI Engine Running"
     }
 
 
 @app.get("/analyze")
-def analyze_logs():
-    return {
-        "incident": "CrashLoopBackOff detected",
-        "possible_cause": "Container memory limit exceeded",
-        "recommendation": "Increase memory limits or optimize application"
-    }
+def analyze():
+
+    sample_log = """
+    CrashLoopBackOff error detected.
+    Memory usage exceeded limit.
+    """
+
+    result = analyze_logs(sample_log)
+
+    return result
